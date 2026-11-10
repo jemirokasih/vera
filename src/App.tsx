@@ -141,7 +141,7 @@ export const App: React.FC = () => {
   const todayNetProfit = Math.round(todayRevenue * 0.42) - todayExpenses;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-slate-100/70 text-slate-900 flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
       {/* Top Universal Navbar with Role Switcher */}
       <TopNavbar
         currentRole={currentRole}
@@ -213,10 +213,10 @@ export const App: React.FC = () => {
       />
 
       {/* Global Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950/80 py-4 px-6 text-center text-xs text-slate-500">
+      <footer className="border-t border-slate-200 bg-white py-4 px-6 text-center text-xs text-slate-500">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
           <p>© 2026 VERA — Verified Eco-Financial & Readiness Assessment. Sub-Tema CIA 2026: Green Fintech & Impact Investment.</p>
-          <p className="text-[11px] text-slate-400 italic">"Verified today, bankable tomorrow"</p>
+          <p className="text-[11px] text-emerald-700 font-semibold italic">"Verified today, bankable tomorrow"</p>
         </div>
       </footer>
     </div>
