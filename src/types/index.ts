@@ -95,3 +95,4 @@ export interface LoanApplication {
   purpose: string;
   dscr: number;
 }
+

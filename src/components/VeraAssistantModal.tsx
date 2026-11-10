@@ -246,3 +246,4 @@ export const VeraAssistantModal: React.FC<VeraAssistantModalProps> = ({
     </div>
   );
 };
+

@@ -1283,3 +1283,4 @@ export const PedagangView: React.FC<PedagangViewProps> = ({
     </div>
   );
 };
+

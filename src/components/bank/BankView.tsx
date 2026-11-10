@@ -466,3 +466,4 @@ export const BankView: React.FC<BankViewProps> = ({
     </div>
   );
 };
+

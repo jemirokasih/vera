@@ -263,3 +263,4 @@ export const INITIAL_LOAN_APPLICATIONS: LoanApplication[] = [
     dscr: 1.9
   }
 ];
+
