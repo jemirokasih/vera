@@ -62,3 +62,4 @@ export interface Merchant {
     interestRatePromo: number;
   };
 }
+

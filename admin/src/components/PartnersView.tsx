@@ -79,3 +79,4 @@ export const PartnersView: React.FC<PartnersViewProps> = ({ partners }) => {
     </div>
   );
 };
+

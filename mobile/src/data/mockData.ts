@@ -84,3 +84,4 @@ export const INITIAL_GREEN_ACTIONS: GreenAction[] = [
     proofNote: 'Audit visual lapak hijau'
   }
 ];
+

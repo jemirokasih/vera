@@ -29,12 +29,16 @@ import {
   Send,
   Building,
   Award,
-  ChevronDown
+  ChevronDown,
+  Printer
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { playVeraSound } from '../../utils/audio';
 
 interface PedagangViewProps {
   merchant: Merchant;
+  allMerchants: Merchant[];
+  onSelectMerchant: (merchantId: string) => void;
   products: Product[];
   transactions: Transaction[];
   greenActions: GreenAction[];
@@ -49,6 +53,8 @@ type TabType = 'home' | 'pos' | 'sak_emkm' | 'green' | 'kur';
 
 export const PedagangView: React.FC<PedagangViewProps> = ({
   merchant,
+  allMerchants,
+  onSelectMerchant,
   products,
   transactions,
   greenActions,
@@ -59,6 +65,8 @@ export const PedagangView: React.FC<PedagangViewProps> = ({
   onOpenVeraAssistant,
 }) => {
   const [activeTab, setActiveTab] = useState<TabType>('home');
+  const [isMerchantDropdownOpen, setIsMerchantDropdownOpen] = useState(false);
+  const [isQrisStandOpen, setIsQrisStandOpen] = useState(false);
 
   // POS State
   const [selectedCategory, setSelectedCategory] = useState<ProductCategory>('Semua');
@@ -146,6 +154,8 @@ export const PedagangView: React.FC<PedagangViewProps> = ({
       sakEmkmCategory: 'pendapatan_usaha',
     });
 
+    playVeraSound('cashier');
+
     confetti({
       particleCount: 60,
       spread: 70,
@@ -205,6 +215,8 @@ export const PedagangView: React.FC<PedagangViewProps> = ({
       proofNote: greenNote,
       weightKg: parseFloat(greenWeight) || 4.5
     });
+
+    playVeraSound('success');
 
     confetti({
       particleCount: 50,
@@ -274,26 +286,42 @@ export const PedagangView: React.FC<PedagangViewProps> = ({
           </div>
         </div>
 
-        {/* Friendly Top Header with Profile Avatar (Inspired by Image 2 & 3) */}
-        <div className="bg-[#F4F7F4] px-4 py-2.5 flex items-center justify-between border-b border-emerald-100/60">
+        {/* Friendly Top Header with Profile Avatar & Merchant Selector */}
+        <div className="bg-[#F4F7F4] px-4 py-2.5 flex items-center justify-between border-b border-emerald-100/60 relative">
           <div className="flex items-center gap-2.5">
-            <img
-              src={merchant.avatarUrl}
-              alt={merchant.name}
-              className="w-10 h-10 rounded-full object-cover border-2 border-emerald-500 shadow-sm"
-            />
+            <div className="relative">
+              <img
+                src={merchant.avatarUrl}
+                alt={merchant.name}
+                className="w-10 h-10 rounded-full object-cover border-2 border-emerald-500 shadow-sm cursor-pointer"
+                onClick={() => setIsMerchantDropdownOpen(!isMerchantDropdownOpen)}
+              />
+              <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-lime-400 border-2 border-white"></span>
+            </div>
             <div>
-              <div className="flex items-center gap-1">
-                <span className="font-extrabold text-sm text-slate-900">Hai, Bu Siti!</span>
-                <span className="text-sm">👋</span>
-              </div>
+              <button
+                onClick={() => setIsMerchantDropdownOpen(!isMerchantDropdownOpen)}
+                className="flex items-center gap-1 text-left group"
+              >
+                <span className="font-extrabold text-sm text-slate-900 group-hover:text-emerald-800 transition">
+                  Hai, {merchant.name.split(' ')[0]} {merchant.name.split(' ')[1] || ''}!
+                </span>
+                <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-700 transition" />
+              </button>
               <p className="text-[11px] text-slate-500 font-medium">
-                {merchant.stallName} • Blok A-14
+                {merchant.stallName} • {merchant.stallLocation.split(',')[0]}
               </p>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsQrisStandOpen(true)}
+              className="p-2 rounded-full bg-white border border-slate-200 text-emerald-800 shadow-xs hover:bg-emerald-50 transition"
+              title="Cetak Stiker QRIS Lapak"
+            >
+              <QrCode className="w-4 h-4" />
+            </button>
             <button
               onClick={onOpenVeraAssistant}
               className="p-2 rounded-full bg-lime-400 text-[#0D3B23] shadow-sm hover:scale-105 active:scale-95 transition"
@@ -301,10 +329,53 @@ export const PedagangView: React.FC<PedagangViewProps> = ({
             >
               <Sparkles className="w-4 h-4 fill-[#0D3B23]" />
             </button>
-            <div className="p-2 rounded-full bg-white border border-slate-200 text-slate-600 shadow-xs">
-              <Bell className="w-4 h-4" />
-            </div>
           </div>
+
+          {/* Merchant Dropdown Menu */}
+          {isMerchantDropdownOpen && (
+            <div className="absolute top-16 left-4 right-4 z-40 bg-white border-2 border-emerald-300 rounded-3xl p-3 shadow-xl space-y-2 animate-fade-in">
+              <div className="flex justify-between items-center px-1 pb-1 border-b border-slate-100">
+                <span className="text-[10px] font-black text-slate-500 uppercase">Ganti Akun Pedagang:</span>
+                <button
+                  onClick={() => setIsMerchantDropdownOpen(false)}
+                  className="text-slate-400 hover:text-slate-700 text-xs font-bold"
+                >
+                  ✕
+                </button>
+              </div>
+              <div className="space-y-1.5">
+                {allMerchants.map((m) => (
+                  <button
+                    key={m.id}
+                    onClick={() => {
+                      onSelectMerchant(m.id);
+                      setIsMerchantDropdownOpen(false);
+                    }}
+                    className={`w-full p-2 rounded-2xl flex items-center justify-between text-left transition ${
+                      m.id === merchant.id
+                        ? 'bg-[#0D3B23] text-white'
+                        : 'bg-[#F8FAF8] hover:bg-emerald-50 text-slate-800'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <img src={m.avatarUrl} alt={m.name} className="w-7 h-7 rounded-full object-cover" />
+                      <div>
+                        <p className="text-xs font-bold leading-tight">{m.name}</p>
+                        <p className={`text-[10px] ${m.id === merchant.id ? 'text-lime-300' : 'text-slate-500'}`}>
+                          {m.stallName}
+                        </p>
+                      </div>
+                    </div>
+                    <span className={`text-[10px] font-black px-2 py-0.5 rounded-full ${
+                      m.id === merchant.id ? 'bg-lime-300 text-[#0D3B23]' : 'bg-lime-100 text-[#0D3B23]'
+                    }`}>
+                      ★ {m.score.total}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Scrollable Main Content Area */}
@@ -1334,6 +1405,67 @@ export const PedagangView: React.FC<PedagangViewProps> = ({
               Simpan ke Buku Kas SAK EMKM
             </button>
           </form>
+        </div>
+      )}
+
+      {/* MODAL CETAK STIKER MEJA QRIS VERA */}
+      {isQrisStandOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm animate-fade-in">
+          <div className="w-full max-w-sm bg-white border-4 border-[#0D3B23] rounded-[40px] p-6 space-y-4 shadow-2xl relative text-center">
+            <button
+              onClick={() => setIsQrisStandOpen(false)}
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-slate-100 text-slate-500 font-bold"
+            >
+              ✕
+            </button>
+
+            <div className="space-y-1">
+              <div className="flex items-center justify-center gap-2">
+                <img src="/logo.jpg" alt="VERA" className="w-8 h-8 rounded-lg object-contain" />
+                <span className="font-black text-lg text-[#0D3B23]">VERA PAY</span>
+              </div>
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                QRIS Pembayaran Digital & Aksi Hijau Pasar
+              </p>
+            </div>
+
+            {/* Stand Acrylic Display Box */}
+            <div className="bg-[#FAFCFA] border-2 border-slate-900 rounded-3xl p-5 shadow-inner space-y-3">
+              <div className="w-44 h-44 mx-auto bg-white border-2 border-slate-900 p-2.5 rounded-2xl flex items-center justify-center">
+                <div className="grid grid-cols-7 gap-1 w-full h-full">
+                  {Array.from({ length: 49 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className={`rounded-xs ${
+                        (i % 2 === 0 || i % 5 === 0 || i % 9 === 0) ? 'bg-slate-950' : 'bg-transparent'
+                      }`}
+                    ></div>
+                  ))}
+                </div>
+              </div>
+              <p className="font-black text-sm text-slate-900">{merchant.stallName}</p>
+              <p className="text-[10px] font-mono text-slate-500">{merchant.qrisId}</p>
+              <span className="inline-block text-[10px] font-black bg-lime-300 text-[#0D3B23] px-3 py-1 rounded-full">
+                ★ Lapak Ramah Lingkungan Pasar Jambu Dua
+              </span>
+            </div>
+
+            <div className="flex gap-2 pt-2">
+              <button
+                onClick={() => setIsQrisStandOpen(false)}
+                className="flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-2xl"
+              >
+                Tutup
+              </button>
+              <button
+                onClick={() => window.print()}
+                className="flex-1 py-2.5 bg-[#0D3B23] hover:bg-emerald-900 text-lime-300 text-xs font-black rounded-2xl flex items-center justify-center gap-1.5 shadow-md"
+              >
+                <Printer className="w-4 h-4" />
+                <span>Cetak Akrilik</span>
+              </button>
+            </div>
+          </div>
         </div>
       )}
 

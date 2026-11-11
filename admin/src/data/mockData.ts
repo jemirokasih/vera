@@ -286,3 +286,4 @@ export const INITIAL_ECO_PARTNERS: EcoPartner[] = [
     iconType: 'leaf'
   }
 ];
+

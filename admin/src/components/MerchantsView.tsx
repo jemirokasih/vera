@@ -246,3 +246,4 @@ export const MerchantsView: React.FC<MerchantsViewProps> = ({
     </div>
   );
 };
+
