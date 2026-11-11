@@ -271,21 +271,9 @@ export const PedagangView: React.FC<PedagangViewProps> = ({
     : products.filter(p => p.category === selectedCategory);
 
   return (
-    <div className="w-full flex justify-center py-4 px-2 sm:px-4">
-      {/* Phone Mockup Frame - Light Clean Device Case */}
-      <div className="relative w-full max-w-md bg-[#F4F7F4] rounded-[48px] border-[10px] border-slate-300/80 shadow-2xl shadow-emerald-950/10 overflow-hidden flex flex-col min-h-[840px] max-h-[920px]">
-        
-        {/* Status Bar */}
-        <div className="bg-[#F4F7F4] px-6 pt-3 pb-2 flex items-center justify-between text-[11px] text-slate-600 select-none z-30">
-          <span className="font-bold">06:30</span>
-          <div className="w-20 h-4 bg-slate-900 rounded-full flex items-center justify-center">
-            <span className="w-2.5 h-2.5 rounded-full bg-lime-400 animate-pulse"></span>
-          </div>
-          <div className="flex items-center gap-1.5 text-xs font-semibold">
-            <span>5G</span>
-            <span>100%</span>
-          </div>
-        </div>
+    <div className="w-full flex justify-center py-2 px-2 sm:px-4">
+      {/* Frameless Clean Mobile View */}
+      <div className="relative w-full max-w-xl bg-[#F4F7F4] rounded-3xl border border-slate-200/90 shadow-md overflow-hidden flex flex-col">
 
         {/* Friendly Top Header with Profile Avatar & Merchant Selector */}
         <div className="bg-[#F4F7F4] px-4 py-2.5 flex items-center justify-between border-b border-emerald-100/60 relative">

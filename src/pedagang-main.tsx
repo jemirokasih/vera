@@ -12,7 +12,7 @@ import { Transaction, GreenAction, LoanApplication } from './types';
 import { PedagangView } from './components/pedagang/PedagangView';
 import { VeraAssistantModal } from './components/VeraAssistantModal';
 import veraLogo from './assets/logo.jpg';
-import { Sparkles, Smartphone, Monitor } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import './index.css';
 
 const StandalonePedagangApp: React.FC = () => {
@@ -23,7 +23,6 @@ const StandalonePedagangApp: React.FC = () => {
   const [greenActions, setGreenActions] = useState<GreenAction[]>(INITIAL_GREEN_ACTIONS);
   const [loanApplications, setLoanApplications] = useState<LoanApplication[]>(INITIAL_LOAN_APPLICATIONS);
   const [isVeraAssistantOpen, setIsVeraAssistantOpen] = useState(false);
-  const [isPhoneFrame, setIsPhoneFrame] = useState(true);
 
   const handleAddTransaction = (
     txData: Omit<Transaction, 'id' | 'invoiceNo' | 'date' | 'time' | 'isVeraVerified'>
@@ -111,36 +110,16 @@ const StandalonePedagangApp: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-slate-500 hidden sm:inline">Mode Tampilan:</span>
-            <button
-              onClick={() => setIsPhoneFrame(!isPhoneFrame)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-2xl text-xs font-bold transition shadow-xs ${
-                isPhoneFrame
-                  ? 'bg-[#0D3B23] text-white'
-                  : 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-50'
-              }`}
-            >
-              <Smartphone className="w-3.5 h-3.5 text-lime-400" />
-              <span>Simulasi Ponsel</span>
-            </button>
-            <button
-              onClick={() => setIsPhoneFrame(false)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-2xl text-xs font-bold transition shadow-xs ${
-                !isPhoneFrame
-                  ? 'bg-[#0D3B23] text-white'
-                  : 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-50'
-              }`}
-            >
-              <Monitor className="w-3.5 h-3.5" />
-              <span>Layar Penuh</span>
-            </button>
+            <span className="text-xs font-black px-3 py-1 rounded-full bg-lime-300 text-[#0D3B23]">
+              Lapak Pasar Jambu Dua
+            </span>
           </div>
         </div>
       </header>
 
       {/* Main Pedagang View */}
-      <main className="flex-1 py-6 px-3 sm:px-6">
-        <div className={isPhoneFrame ? 'max-w-md mx-auto shadow-2xl rounded-[40px] overflow-hidden border-8 border-slate-900 bg-white' : 'max-w-5xl mx-auto'}>
+      <main className="flex-1 py-4 px-2 sm:px-6">
+        <div className="max-w-2xl mx-auto">
           <PedagangView
             merchant={merchant}
             allMerchants={merchantsList}
