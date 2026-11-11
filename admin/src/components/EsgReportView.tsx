@@ -1,5 +1,6 @@
 import React from 'react';
 import { Printer, Download, Leaf, ShieldCheck, Scale, Award } from 'lucide-react';
+import veraLogo from '../assets/logo.jpg';
 
 export const EsgReportView: React.FC = () => {
   return (
@@ -31,7 +32,7 @@ export const EsgReportView: React.FC = () => {
         {/* Document Header */}
         <div className="text-center pb-5 border-b-2 border-[#0D3B23] space-y-2">
           <div className="flex items-center justify-center gap-3">
-            <img src="/logo.jpg" alt="VERA" className="w-12 h-12 object-contain" />
+            <img src={veraLogo} alt="VERA" className="w-12 h-12 object-contain" />
             <div>
               <h1 className="text-xl font-black text-[#0D3B23] tracking-tight">
                 PERUMDA PASAR PAKUAN JAYA — UNIT PASAR JAMBU DUA

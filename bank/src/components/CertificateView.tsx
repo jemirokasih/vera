@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { LoanApplication } from '../types';
+import veraLogo from '../assets/logo.jpg';
 import {
   Printer,
   Download,
@@ -90,14 +91,14 @@ export const CertificateView: React.FC<CertificateViewProps> = ({
 
         {/* Certificate Watermark */}
         <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none">
-          <img src="/logo.jpg" alt="Watermark" className="w-96 h-96 object-contain" />
+          <img src={veraLogo} alt="Watermark" className="w-96 h-96 object-contain" />
         </div>
 
         {/* Document Header */}
         <div className="relative flex flex-col sm:flex-row items-center justify-between pb-6 border-b border-slate-200 gap-4">
           <div className="flex items-center gap-3">
             <img
-              src="/logo.jpg"
+              src={veraLogo}
               alt="VERA"
               className="w-14 h-14 rounded-2xl object-contain border border-emerald-200 p-1 bg-white shadow-xs"
             />

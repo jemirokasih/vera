@@ -55,28 +55,42 @@ Vera/
 
 ---
 
-## 🚀 Demo Langsung via File HTML Statis (Tanpa Install / Tanpa Server)
+## 🚀 Demo Langsung via File HTML Statis Mandiri (Offline / Tanpa Server)
 
-Aplikasi telah dibundle menjadi file **HTML statis mandiri (*Single-file Standalone*)** di dalam folder [`demo/`](demo/index.html):
+Aplikasi telah dibundle menjadi file **HTML statis mandiri (*Single-file Standalone*) per peran** di dalam folder [`demo/`](demo/):
 
 ```
 Vera/
 └── demo/
-    └── index.html   # File demo mandiri (Semua JS, CSS, Icon, Sound Synthesizer ter-bundle 100%)
+    ├── index.html       # Launcher Hub (Pusat navigasi ke semua demo)
+    ├── pedagang.html    # Standalone Demo 1: Pedagang Pasar (Mobile POS/QRIS/SAK EMKM/KUR)
+    ├── admin.html       # Standalone Demo 2: Admin Pasar Jambu Dua (Verifikasi Lapangan/Kios)
+    ├── bank.html        # Standalone Demo 3: Bank Underwriting Terminal (Audit/Pricing/Sertifikat)
+    └── simulator.html   # Unified All-in-One Simulator (Mockup ponsel + switcher atas)
 ```
 
-### Cara Membuka Demo:
-1. **Klik dua kali (*double-click*)** file [`demo/index.html`](file:///Users/jemirokasih/Projects/Vera/demo/index.html) di Finder / File Explorer untuk langsung membuka di browser (Chrome, Safari, Edge, Firefox).
-2. Atau via terminal:
+### Cara Membuka Demo Masing-Masing:
+1. **Buka Langsung (Double-Click)** file HTML peran yang ingin didemokan di Finder / File Explorer:
+   - 📱 **Pedagang**: Buka file [`demo/pedagang.html`](file:///Users/jemirokasih/Projects/Vera/demo/pedagang.html)
+   - 🏢 **Admin Pasar**: Buka file [`demo/admin.html`](file:///Users/jemirokasih/Projects/Vera/demo/admin.html)
+   - 🏦 **Bank Terminal**: Buka file [`demo/bank.html`](file:///Users/jemirokasih/Projects/Vera/demo/bank.html)
+   - 🌐 **Launcher Hub**: Buka file [`demo/index.html`](file:///Users/jemirokasih/Projects/Vera/demo/index.html)
+2. **Atau via Terminal (macOS)**:
    ```bash
+   # Buka launcher utama
    open demo/index.html
+
+   # Atau buka peran spesifik
+   open demo/pedagang.html
+   open demo/admin.html
+   open demo/bank.html
    ```
-3. Atau jalankan server statis ringan:
+3. **Atau jalankan server statis lokal**:
    ```bash
    python3 -m http.server 8080 --directory demo
-   # Lalu buka: http://localhost:8080
+   # Lalu akses: http://localhost:8080
    ```
-*Catatan: Seluruh fitur simulator (Pedagang Kasir POS, QRIS, SAK EMKM, Admin Pasar, Bank Terminal, dan Asisten Suara "Tanya VERA") dapat dicoba 100% interaktif tanpa koneksi internet dan tanpa perlu menjalankan Node.js.*
+*Semua file HTML 100% portable, inlined (JS, CSS, Icon, Sound, Data), bisa dijalankan offline tanpa koneksi internet dan tanpa Node.js.*
 
 ---
 

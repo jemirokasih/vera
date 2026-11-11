@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && cp dist/index.html dist/vera-demo.html",
-    "demo": "open dist/index.html",
+    "build:demos": "npm run build && npx vite build --config vite.pedagang.config.ts && npm run build --prefix admin && npm run build --prefix bank && cp dist/index.html demo/simulator.html && cp dist-pedagang/pedagang.html demo/pedagang.html && cp admin/dist/index.html demo/admin.html && cp bank/dist/index.html demo/bank.html",
+    "demo": "open demo/index.html",
     "preview": "vite preview",
     "dev:all": "concurrently -k -n \"ROOT,ADMIN,BANK\" -c \"green,blue,magenta\" \"vite --port 3000\" \"npm run dev --prefix admin\" \"npm run dev --prefix bank\"",
     "dev:admin": "npm run dev --prefix admin",

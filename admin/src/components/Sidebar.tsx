@@ -1,5 +1,6 @@
 import React from 'react';
 import { AdminViewType } from '../types';
+import veraLogo from '../assets/logo.jpg';
 import {
   LayoutDashboard,
   CheckCircle2,
@@ -38,7 +39,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div className="p-5 border-b border-slate-100 flex items-center gap-3">
           <div className="relative">
             <img
-              src="/logo.jpg"
+              src={veraLogo}
               alt="VERA"
               className="w-10 h-10 rounded-2xl object-contain border border-emerald-200 bg-white p-0.5 shadow-xs"
             />
