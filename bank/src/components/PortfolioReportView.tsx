@@ -372,3 +372,4 @@ export const PortfolioReportView: React.FC<PortfolioReportViewProps> = ({ applic
     </div>
   );
 };
+

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { LoanApplication, Merchant, Transaction } from '../../types';
+import veraLogo from '../../assets/logo.jpg';
 import {
   Building2,
   ShieldCheck,
@@ -85,7 +86,7 @@ export const BankView: React.FC<BankViewProps> = ({
         </div>
 
         <div className="flex items-center gap-3 bg-emerald-950/80 px-4 py-3 rounded-2xl border border-emerald-800/80">
-          <img src="/logo.jpg" alt="VERA" className="w-9 h-9 rounded-xl object-contain bg-white p-0.5" />
+          <img src={veraLogo} alt="VERA" className="w-9 h-9 rounded-xl object-contain bg-white p-0.5" />
           <div className="text-right">
             <span className="text-[10px] text-emerald-300 block font-medium">Metonimia Analis:</span>
             <span className="text-xs font-black text-lime-400">
@@ -479,7 +480,7 @@ export const BankView: React.FC<BankViewProps> = ({
             {/* Certificate Header */}
             <div className="text-center pb-4 border-b-2 border-[#0D3B23]">
               <div className="flex items-center justify-center gap-3 mb-2">
-                <img src="/logo.jpg" alt="VERA" className="w-12 h-12 object-contain" />
+                <img src={veraLogo} alt="VERA" className="w-12 h-12 object-contain" />
                 <h1 className="text-2xl font-black text-[#0D3B23] tracking-wider">
                   VERA READINESS ASSESSMENT
                 </h1>

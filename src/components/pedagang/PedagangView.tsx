@@ -34,6 +34,7 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { playVeraSound } from '../../utils/audio';
+import veraLogo from '../../assets/logo.jpg';
 
 interface PedagangViewProps {
   merchant: Merchant;
@@ -1421,7 +1422,7 @@ export const PedagangView: React.FC<PedagangViewProps> = ({
 
             <div className="space-y-1">
               <div className="flex items-center justify-center gap-2">
-                <img src="/logo.jpg" alt="VERA" className="w-8 h-8 rounded-lg object-contain" />
+                <img src={veraLogo} alt="VERA" className="w-8 h-8 rounded-lg object-contain" />
                 <span className="font-black text-lg text-[#0D3B23]">VERA PAY</span>
               </div>
               <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">

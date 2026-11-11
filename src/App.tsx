@@ -155,6 +155,11 @@ export const App: React.FC = () => {
         {currentRole === 'pedagang' && (
           <PedagangView
             merchant={merchant}
+            allMerchants={merchantsList}
+            onSelectMerchant={(merchantId) => {
+              const found = merchantsList.find((m) => m.id === merchantId);
+              if (found) setMerchant(found);
+            }}
             products={products}
             transactions={transactions}
             greenActions={greenActions}

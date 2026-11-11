@@ -55,7 +55,32 @@ Vera/
 
 ---
 
-## ⚡ Cara Cepat: Jalankan 3 Platform Sekaligus (1 Perintah)
+## 🚀 Demo Langsung via File HTML Statis (Tanpa Install / Tanpa Server)
+
+Aplikasi telah dibundle menjadi file **HTML statis mandiri (*Single-file Standalone*)** di dalam folder [`demo/`](demo/index.html):
+
+```
+Vera/
+└── demo/
+    └── index.html   # File demo mandiri (Semua JS, CSS, Icon, Sound Synthesizer ter-bundle 100%)
+```
+
+### Cara Membuka Demo:
+1. **Klik dua kali (*double-click*)** file [`demo/index.html`](file:///Users/jemirokasih/Projects/Vera/demo/index.html) di Finder / File Explorer untuk langsung membuka di browser (Chrome, Safari, Edge, Firefox).
+2. Atau via terminal:
+   ```bash
+   open demo/index.html
+   ```
+3. Atau jalankan server statis ringan:
+   ```bash
+   python3 -m http.server 8080 --directory demo
+   # Lalu buka: http://localhost:8080
+   ```
+*Catatan: Seluruh fitur simulator (Pedagang Kasir POS, QRIS, SAK EMKM, Admin Pasar, Bank Terminal, dan Asisten Suara "Tanya VERA") dapat dicoba 100% interaktif tanpa koneksi internet dan tanpa perlu menjalankan Node.js.*
+
+---
+
+## ⚡ Cara Cepat: Jalankan 3 Server Dev Sekaligus (1 Perintah)
 
 Untuk menjalankan **Unified Simulator**, **Admin Portal**, dan **Bank Terminal** sekaligus dalam 1 perintah:
 

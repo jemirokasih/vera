@@ -72,3 +72,4 @@ export interface InterestTierRule {
   maxPlafon: number;
   riskRating: 'Sangat Rendah' | 'Rendah' | 'Sedang' | 'Tinggi';
 }
+

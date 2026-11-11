@@ -309,3 +309,4 @@ export const TIER_RULES: InterestTierRule[] = [
     riskRating: 'Tinggi'
   }
 ];
+

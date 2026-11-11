@@ -307,3 +307,4 @@ export const CertificateView: React.FC<CertificateViewProps> = ({
     </div>
   );
 };
+

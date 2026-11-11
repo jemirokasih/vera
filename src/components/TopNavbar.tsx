@@ -1,6 +1,7 @@
 import React from 'react';
 import { UserRole } from '../types';
 import { Smartphone, Building2, Store, ShieldCheck, Sparkles } from 'lucide-react';
+import veraLogo from '../assets/logo.jpg';
 
 interface TopNavbarProps {
   currentRole: UserRole;
@@ -22,7 +23,7 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
         <div className="flex items-center gap-3">
           <div className="relative">
             <img
-              src="/logo.jpg"
+              src={veraLogo}
               alt="VERA Logo"
               className="w-10 h-10 rounded-2xl object-contain shadow-sm border border-emerald-200 bg-white p-0.5"
             />

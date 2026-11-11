@@ -176,3 +176,4 @@ export const InterestPricingView: React.FC = () => {
     </div>
   );
 };
+

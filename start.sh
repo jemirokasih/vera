@@ -28,3 +28,4 @@ done
 
 # Jalankan ketiga server secara paralel dengan concurrently
 npm run dev:all
+
