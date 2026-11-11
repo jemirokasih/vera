@@ -55,7 +55,28 @@ Vera/
 
 ---
 
-## ⚙️ Panduan Menjalankan Aplikasi
+## ⚡ Cara Cepat: Jalankan 3 Platform Sekaligus (1 Perintah)
+
+Untuk menjalankan **Unified Simulator**, **Admin Portal**, dan **Bank Terminal** sekaligus dalam 1 perintah:
+
+```bash
+# Opsi 1: Menggunakan bash script
+./start.sh
+
+# Opsi 2: Menggunakan npm
+npm run dev:all
+```
+
+Server otomatis aktif di 3 port:
+- 📱 **Unified Web Simulator**: [`http://localhost:3000`](http://localhost:3000)
+- 🏢 **Admin Portal Pasar**: [`http://localhost:3001`](http://localhost:3001)
+- 🏦 **Bank Underwriting Terminal**: [`http://localhost:3002`](http://localhost:3002)
+
+*(Tekan `Ctrl+C` di terminal untuk menghentikan ketiga server secara bersamaan).*
+
+---
+
+## ⚙️ Panduan Menjalankan Per Modul (Manual)
 
 ### Prasyarat
 - Node.js versi 18+ atau 20+
@@ -158,3 +179,4 @@ $$\text{Skor VERA} = (0.50 \times \text{Finansial}) + (0.30 \times \text{ESG}) +
 ## 📜 Lisensi & Pengesahan
 Dikembangkan untuk **CIA 2026** (Sub-Tema: *Green Fintech & Impact Investment*).  
 Standar Kepatuhan: **SAK EMKM IAI** & **POJK No. 51/POJK.03/2017**.
+
